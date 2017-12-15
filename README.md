@@ -18,13 +18,12 @@ reaching for. Now you can have them everywhere you use slack!
 ### Emoji Download
 
 You'll need :
-
 - [`pup`](https://github.com/ericchiang/pup),
 - `wget`,
 - `perl`,
 - Either
   - a browser extension for inspecting browser cookies
-    (e.g. [EditThisCookie](http://www.editthiscookie.com/), or
+    (e.g. [EditThisCookie](http://www.editthiscookie.com/)), or
   - a passing familiarity with the "Application" tab of Chrome Dev
     Tools
 
@@ -46,7 +45,25 @@ path/to/download-emoji.sh "paste_the_d_cookie_here" "paste_your_organization_nam
 
 The download is quite likely to take a solid amount of time, (usually a few minutes on my macbook).
 
+### Emoji Upload
+
+Now that you have a zillion (ahem) emoji on your computer, you can
+upload them to other organizations of which you're a part! You can be
+the Prime Minister of emoji in every slack you join!
+
+Navigate to the customize/emoji page of the organization to which
+you'd like to upload emoji. (See
+the [Emoji Download section](#emoji-download) for how to access this
+page.) Copy and paste the whole contents
+of [the upload-emoji.js script](upload-emoji.js) into the javascript
+console of Chrome Dev Tools, and execute it. You can now drag-and-drop
+single or groups of files onto the "Choose a name" field, and they'll
+be uploaded to that organization.
+
+![Drag and drop from Finder to the "Choose a name" field of the customize/emoji page](docs/images/drag-and-drop-osx.png)
 
 
+
+# License
 
 [Creative Commons Attr./Share-Alike](https://creativecommons.org/licenses/by-sa/3.0/deed.en)
