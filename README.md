@@ -29,11 +29,11 @@ You'll need :
     Tools
 
 From slack, navigate to your org's customize/emoji page.
-![docs/images/get-to-customize-emoji-page.png](Click "Customize Slack" from the organization dropdown.)
+![Click "Customize Slack" from the organization dropdown.](docs/images/get-to-customize-emoji-page.png)
 Grab the organization's name from the URL.
-![docs/images/get-organization-name.png](The organization name from the customize/emoji page URL.)
+![The organization name from the customize/emoji page URL.](docs/images/get-organization-name.png)
 Extract the `d` cookie which authorizes you to view this page.
-![docs/images/get-cookie.png](Where this is done in the Application tab of Chrome Dev Tools)
+![Where this is done in the Application tab of Chrome Dev Tools.](docs/images/get-cookie.png)
 On the command line, navigate to the directory to which you'd like to download all emoji and invoke the script
 ```sh
 mkdir i-recommend-you-use-a-clean-directory
