@@ -23,7 +23,7 @@ $('form').on('drop', function(e) {
         name = fileName.substr(0, fileName.lastIndexOf('.')) || fileName;
     ajaxData.append('name', name);
     $.ajax({
-      url: 'https://wayfair.slack.com/customize/emoji',
+      url: '/customize/emoji',
       type: 'POST',
       data: ajaxData,
       cache: false,
