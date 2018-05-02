@@ -33,6 +33,10 @@ From slack, navigate to your org's customize/emoji page.
 Grab the organization's name from the URL.
 ![The organization name from the customize/emoji page URL.](docs/images/get-organization-name.png)
 
+You'll want to check how many pages of emoji your organization has.
+
+![The number of pages of emoji on the organization's customize/emoji page.](docs/images/get_emoji_page_count.png)
+
 Extract the `d` cookie which authorizes you to view this page.
 ![Where this is done in the Application tab of Chrome Dev Tools.](docs/images/get-cookie.png)
 
@@ -40,7 +44,7 @@ On the command line, navigate to the directory to which you'd like to download a
 ```sh
 mkdir i-recommend-you-use-a-clean-directory
 cd !$ # go there^
-path/to/download-emoji.sh "paste_the_d_cookie_here" "paste_your_organization_name_here"
+path/to/download-emoji.sh "paste_the_d_cookie_here" "paste_your_organization_name_here" "number_of_pages_your_organization_has_somehow_produced"
 ```
 
 The download is quite likely to take a solid amount of time, (usually a few minutes on my macbook).
