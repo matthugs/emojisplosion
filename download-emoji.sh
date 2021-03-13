@@ -4,23 +4,22 @@
 # Usage:
 # - navigate to <$your_organization>.slack.com/customize/emoji
 # - authenticate as appropriate
-# - grab the cookie under the name "d" (using either a browser extension for looking at cookies or the "Application" tab of Chrome dev tools)
-# - execute `./download-emoji.sh "paste_the_d_cookie_here" "your_organization_name_as_it_appears_in_the_URL" "page_count_of_emoji_for_your_organization"
+# - open developer tools and navigate to the "Network" tab & reload the page
+# - use the search "emoji.list" or "emoji.adminList" to isolate a single request
+# - right click on that request > Copy > Copy response
+# - save that in a file
+# - execute `./download-emoji.sh name-of-the-file-you-saved
 #
-# Dependencies: pup  https://github.com/ericchiang/pup
-#               wget https://savannah.gnu.org/git/?group=wget
+# Dependencies: jq https://stedolan.github.io/jq/
+#               wget
 #               perl
 
 function download_all_emoji_here() {
-    i=1
-    while [ $i -le $3 ]; do
-        wget -qO- --header "cookie: d=${1}"  "${2}.slack.com/customize/emoji?page=${i}"  | # pull down page html
-            pup '.emoji_row .emoji-wrapper attr{data-original}' | # pull emoji from the page html
-            perl -n  -e '/T0K6ESZ62\/([^\/]*)\/[^.]*.([a-z]+)$/ && chomp && print "$_ $1.$2\n"'  | # strip out lines of form "whole_url emoji_name.extension_at_end_of_url"
-            xargs -n1 | # process line-by-line
-            while read a; read b; do wget -nd -O - $a > ./$b ; done; # download from the url, save to file name
-        i=$(($i + 1))
-    done
+    jq ".emoji" emoji-list.json | # pull out the list of emoji from json
+        sed '1d;$d' | # discard the first and last lines ('{' & '}', respectively)
+        perl -n -e  '/"([a-zA-Z_-]+)": "(https:\/\/emoji.slack-edge.com\/T[A-Z0-9]{8}\/[a-zA-Z_-]+\/[a-g0-9]{16}\.(jpg|png|gif))/ && print "$2 $1.$3\n"' | # strip out only lines that point to image files, and rearrange them as "whole_url emoji_name.extension_at_end_of_url"
+        xargs -n1 | # process line-by-line
+        while read a; read b; do wget -nd -O - $a > ./$b ; done; # download from the url, save to file name
 }
 
-download_all_emoji_here "${1}" "${2}" "${3}"
+download_all_emoji_here "${1}"
