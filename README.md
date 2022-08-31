@@ -20,17 +20,35 @@ reaching for. Now you can have them everywhere you use slack!
 You'll need :
 - [`jq`](https://stedolan.github.io/jq/),
 - `wget`,
-- a passing familiarity with the "Network" tab of Chrome Dev
+- a passing familiarity with the "Network" tab of Chrome Dev Tools
   Tools
 
 From slack, navigate to your org's customize/emoji page.
 ![Click "Customize Slack" from the organization dropdown.](docs/images/get-to-customize-emoji-page.png)
 
-If that option isn't present, don't despair! You can still download emoji from a slack workspace which is set up to disallow non-admins from customizing emoji. Add `/customize/emoji` to the end of the url that appears below your org's name.
+If that option isn't present, don't despair! You can still download
+emoji from a slack workspace which is set up to disallow non-admins
+from customizing emoji. Add `/customize/emoji` to the end of the url
+that appears below your org's name.
 
 Open developer tools to the Network tab, reloading the page if necessary to populate it with requests.
 Search for `emoji.list` and copy the response for the corresponding request, saving it in some file.
 ![Copy response from the emoji.list request](docs/images/get-emoji-list-response.png)
+
+If the emoji.list request isn't in the Network tab, search instead for
+`emoji.adminList`, and use "copy as cURL". Then edit the URL to which
+this request is made, substituting `emoji.list` wherever you find
+`emoji.adminList`. (The motivation for this is that the new URL is
+paginated, so we want to use the older, unpaginated endpoint to get
+the emoji list.) You can pipe the output from that command into a json
+file like so:
+![Before we edit the curl command it will show emoji.adminList](docs/images/curl-admin-request-with-arrow-of-part-to-edit.png)
+
+You'll want to edit that specific part to read `emoji.list`, as well
+as add a `>` and a filename to the end of the (rather long) `curl`
+command, these last of which save the output to a file. After doing so
+it should look like this:
+![After we edit the curl command it will show emoji.list and an output redirection to a file](docs/images/curl-emoji-dot-list-request-with-arrows-of-edited-parts.png)
 
 On the command line, navigate to the directory to which you'd like to download all emoji and invoke the script
 ```sh
