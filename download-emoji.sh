@@ -15,9 +15,7 @@
 #               perl
 
 function download_all_emoji_here() {
-    jq ".emoji" emoji-list.json | # pull out the list of emoji from json
-        sed '1d;$d' | # discard the first and last lines ('{' & '}', respectively)
-        perl -n -e  '/"([a-zA-Z_-]+)": "(https:\/\/emoji.slack-edge.com\/T[A-Z0-9]{8}\/[a-zA-Z_-]+\/[a-g0-9]{16}\.(jpg|png|gif))/ && print "$2 $1.$3\n"' | # strip out only lines that point to image files, and rearrange them as "whole_url emoji_name.extension_at_end_of_url"
+    jq -rj '.emoji | to_entries[] | (.value, " ", .key, ".", (.value | capture("(?<extension>jpg|png|gif)$").extension), "\n")' "${1}" |
         xargs -n1 | # process line-by-line
         while read a; read b; do wget -nd -O - $a > ./$b ; done; # download from the url, save to file name
 }
