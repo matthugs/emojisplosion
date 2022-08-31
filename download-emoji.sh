@@ -12,7 +12,6 @@
 #
 # Dependencies: jq https://stedolan.github.io/jq/
 #               wget
-#               perl
 
 function download_all_emoji_here() {
     jq -rj '.emoji | to_entries[] | (.value, " ", .key, ".", (.value | capture("(?<extension>jpg|png|gif)$").extension), "\n")' "${1}" |

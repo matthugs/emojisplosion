@@ -20,7 +20,6 @@ reaching for. Now you can have them everywhere you use slack!
 You'll need :
 - [`jq`](https://stedolan.github.io/jq/),
 - `wget`,
-- `perl`,
 - a passing familiarity with the "Network" tab of Chrome Dev
   Tools
 
