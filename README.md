@@ -18,7 +18,7 @@ reaching for. Now you can have them everywhere you use slack!
 ### Emoji Download
 
 You'll need :
-- [`jq`](https://stedolan.github.io/jq/),
+- [`jq`](https://jqlang.org/),
 - `wget`,
 - a passing familiarity with the "Network" tab of Firefox Dev Tools
 
