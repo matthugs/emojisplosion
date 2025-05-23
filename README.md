@@ -23,7 +23,7 @@ You'll need :
 - a passing familiarity with the "Network" tab of Firefox Dev Tools
 
 From slack, navigate to your org's customize/emoji page.
-![Click "Customize Slack" from the organization dropdown.](docs/images/get-to-customize-emoji-page.png)
+![Click "Customize Slack" under "Tools" from the organization dropdown.](docs/images/get-to-customize-emoji-page.png)
 
 If that option isn't present, don't despair! You can still download
 emoji from a slack workspace which is set up to disallow non-admins
@@ -34,11 +34,11 @@ Open developer tools to the Network tab, reloading the page if necessary to popu
 Search for `emoji.list` and copy the response for the corresponding request, saving it in some file.
 ![Copy response from the emoji.list request](docs/images/get-emoji-list-response.png)
 
-If the emoji.list request isn't in the Network tab, search instead for
-`emoji.adminList`, and use "copy as cURL". Then edit the URL to which
-this request is made, substituting `emoji.list` wherever you find
-`emoji.adminList`. (The motivation for this is that the new URL is
-paginated, so we want to use the older, unpaginated endpoint to get
+If the `emoji.list` request isn't in the Network tab, search instead
+for `emoji.adminList`, and use "copy as cURL". Then edit the URL to
+which this request is made, substituting `emoji.list` wherever you
+find `emoji.adminList`. (The motivation for this is that the new URL
+is paginated, so we want to use the older, unpaginated endpoint to get
 the emoji list.) You can pipe the output from that command into a json
 file like so:
 ![Before we edit the curl command it will show emoji.adminList](docs/images/curl-admin-request-with-arrow-of-part-to-edit.png)
@@ -52,7 +52,7 @@ it should look like this:
 On the command line, navigate to the directory to which you'd like to download all emoji and invoke the script
 ```sh
 mkdir i-recommend-you-use-a-clean-directory
-cd !$ # go there^
+cd !$ # change directory to the one we just created
 path/to/download-emoji.sh file-in-which-you-saved-the-response
 ```
 
@@ -60,9 +60,11 @@ The download is quite likely to take a solid amount of time, (usually a few minu
 
 ### Emoji Upload
 
-Now that you have a zillion (ahem) emoji on your computer, you can
-upload them to other organizations of which you're a part! You can be
-the Prime Minister of emoji in every slack you join!
+Now that you have a
+[alot](https://hyperboleandahalf.blogspot.com/2010/04/alot-is-better-than-you-at-everything.html)
+of emoji on your computer, you can upload them to other organizations
+of which you're a part! You can be the Prime Minister of emoji in
+every slack you join!
 
 Navigate to the customize/emoji page of the organization to which
 you'd like to upload emoji. (See
