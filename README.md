@@ -20,8 +20,7 @@ reaching for. Now you can have them everywhere you use slack!
 You'll need :
 - [`jq`](https://stedolan.github.io/jq/),
 - `wget`,
-- a passing familiarity with the "Network" tab of Chrome Dev Tools
-  Tools
+- a passing familiarity with the "Network" tab of Firefox Dev Tools
 
 From slack, navigate to your org's customize/emoji page.
 ![Click "Customize Slack" from the organization dropdown.](docs/images/get-to-customize-emoji-page.png)
